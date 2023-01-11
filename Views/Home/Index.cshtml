@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+<div class="container">
+    <div class="table-responsive">
+        <table id="myTable" class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ProductId</th>
+                    <th>ProductName</th>
+                    <th>CategoryId</th>
+                    <th>CategoryName</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable(
+                {
+                    ajax: {
+                        url: "Home/Productlist",
+                        type: "POST", 
+                    },
+                    processing: true,
+                    serverSide: true,
+                    filter: true,
+                    columns: [
+                        { data: "ProductId", name: "ProductId" },
+                        { data: "ProductName", name: "ProductName" },
+                        { data: "CategoryId", name: "CategoryId" },
+                        { data: "CategoryName", name: "CategoryName" },
+                    ]
+                }
+            );
+        });
+    </script>
+
+}
